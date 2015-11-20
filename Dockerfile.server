@@ -19,5 +19,7 @@ RUN go install \
     -ldflags "-w -X ${NOTARYPKG}/version.GitCommit=`git rev-parse --short HEAD` -X ${NOTARYPKG}/version.NotaryVersion=`cat NOTARY_VERSION`" \
     ${NOTARYPKG}/cmd/notary-server
 
+RUN mkdir -p /opt/notary-server && cp cmd/notary-server/* /opt/notary-server/
+
 ENTRYPOINT [ "notary-server" ]
-CMD [ "-config", "cmd/notary-server/config.json" ]
+CMD [ "-config", "/opt/notary-server/config.json" ]
