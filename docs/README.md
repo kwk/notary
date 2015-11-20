@@ -1,8 +1,14 @@
+<!--[metadata]>
++++
+draft = true
++++
+<![end-metadata]-->
+
 # Contributing to the Docker Notary documentation
 
-The documentation in this directory is part of the [https://docs.docker.com](https://docs.docker.com) website.  Docker uses [the Hugo static generator](http://gohugo.io/overview/introduction/) to convert project Markdown files to a static HTML site. 
+The documentation in this directory is part of the [https://docs.docker.com](https://docs.docker.com) website.  Docker uses [the Hugo static generator](http://gohugo.io/overview/introduction/) to convert project Markdown files to a static HTML site.
 
-You don't need to be a Hugo expert to contribute to the Notary documentation. If you are familiar with Markdown, you can modify the content in the `docs` files.  
+You don't need to be a Hugo expert to contribute to the Notary documentation. If you are familiar with Markdown, you can modify the content in the `docs` files.
 
 If you want to add a new file or change the location of the document in the menu, you do need to know a little more.
 
@@ -23,7 +29,7 @@ If you want to add a new file or change the location of the document in the menu
         docker run --rm -it  -e AWS_S3_BUCKET -e NOCACHE -p 8000:8000 -e DOCKERHOST "docs-base:test-tooling" hugo server --port=8000 --baseUrl=192.168.59.103 --bind=0.0.0.0
         ERROR: 2015/06/13 MenuEntry's .Url is deprecated and will be removed in Hugo 0.15. Use .URL instead.
         0 of 4 drafts rendered
-        0 future content 
+        0 future content
         12 pages created
         0 paginator pages created
         0 tags created
@@ -48,7 +54,7 @@ The top of each Docker Notary documentation file contains TOML metadata. The met
     parent="smn_workw_Notary"
     weight=2
     +++
-    <![end-metadata]-->  
+    <![end-metadata]-->
 
 The metadata alone has this structure:
 
@@ -60,7 +66,7 @@ The metadata alone has this structure:
     parent="smn_workw_Notary"
     weight=2
     +++
-    
+
 The `[menu.main]` section refers to navigation defined [in the main Docker menu](https://github.com/docker/docs-base/blob/hugo/config.toml). This metadata says *add a menu item called* Extending services in Notary *to the menu with the* `smn_workdw_Notary` *identifier*.  If you locate the menu in the configuration, you'll find *Create multi-container applications* is the menu title.
 
 You can move an article in the tree by specifying a new parent. You can shift the location of the item by changing its weight.  Higher numbers are heavier and shift the item to the bottom of menu. Low or no numbers shift it up.
@@ -69,5 +75,5 @@ You can move an article in the tree by specifying a new parent. You can shift th
 ## Other key documentation repositories
 
 The `docker/docs-base` repository contains [the Hugo theme and menu configuration](https://github.com/docker/docs-base). If you open the `Dockerfile` you'll see the `make docs` relies on this as a base image for building the Notary documentation.
-    
+
 The `docker/docs.docker.com` repository contains [build system for building the Docker documentation site](https://github.com/docker/docs.docker.com). Fork this repository to build the entire documentation site.
