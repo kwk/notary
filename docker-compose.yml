@@ -1,9 +1,10 @@
 notaryserver:
   build: .
-  dockerfile: Dockerfile.server
-  links:
-   - notarymysql
-   - notarysigner
+  dockerfile: notary-server-Dockerfile
+  net: notarynet
+  volumes_from:
+    - notarymysql
+    - notarysigner
   ports:
    - "8080"
    - "4443:4443"
@@ -14,10 +15,12 @@ notarysigner:
    - /dev/bus/usb/003/010:/dev/bus/usb/002/010
    - /var/run/pcscd/pcscd.comm:/var/run/pcscd/pcscd.comm
   build: .
-  dockerfile: Dockerfile.signer
-  links:
-   - notarymysql
+  dockerfile: notary-signer-Dockerfile
+  net: notarynet
+  volumes_from:
+    - notarymysql
 notarymysql:
+  net: notarynet
   build: ./notarymysql/
   ports:
     - "3306:3306"
